@@ -10,6 +10,8 @@ import {
 } from '@mui/material';
 import {useDispatch} from 'react-redux';
 import {Visibility, VisibilityOff} from '@mui/icons-material';
+import {LoginUser, RegisterUser} from '../api/user'
+import * as actions from '../store/actions'
 
 const style = {
 	position: 'absolute',
@@ -28,17 +30,18 @@ const style = {
 
 export default function LoginForm(props) {
 	const [login, setLogin] = useState('');
+	const [isOpen, setIsOpen] = useState(true);
 	const [password, setPassword] = useState('');
 	const [repeatPassword, setRepeatPassword] = useState('');
 	const [showPassword, setShowPassword] = useState(false);
 	const [isLogin, setIsLogin] = useState(true);
-	const [user, setUser] = useState(null);
-	const [okRegister, setRegister] = useState(false);
+	const [okRegister, setRegister] = useState(true);
+	const [errorMessage, setErrorMessage] = useState("");
 	const dispatch = useDispatch(); // Получаем диспатч из хука
 
 	return (
 		<Modal
-			open={props.isOpen}
+			open={isOpen}
 		>
 			<Box sx={style}>
 				<h2 style={{textAlign: 'center'}} id="parent-modal-title">
@@ -93,11 +96,25 @@ export default function LoginForm(props) {
 					style={{width: '50%'}}
 					onClick={() => {
 						if (isLogin) {
-							// TODO: Login
+							LoginUser(login, password, user => {
+								if (user) {
+									dispatch(actions.LoginUser(user));
+									setIsOpen(false)
+								} else {
+									setErrorMessage(user.status)
+								}
+							})
 						} else {
 							if (password !== repeatPassword)
 								return;
-							// TODO: Register
+							RegisterUser(login, password, user => {
+								if (user.user) {
+									dispatch(actions.RegisterUser(user.user));
+									setIsOpen(false)
+								} else {
+									setErrorMessage(user.status)
+								}
+							})
 						}
 					}}>Продолжить</Button>
 			</Box>

@@ -1,24 +1,30 @@
 export const API_ADDRESS = 'http://localhost:5000';
 
 
-export function login(user_login, password, callback) {
-	fetch(`${API_ADDRESS}/login/${user_login}`).then(result => result.json()).then(res => {
+export function LoginUser(user_login, password, callback) {
+	fetch(`${API_ADDRESS}/login/`, {
+		method: "POST",
+		headers: {'Content-Type': 'application/json'},
+		body: JSON.stringify({
+			login: user_login,
+			password: password
+		}),
+	}).then(result => result.json()).then(res => {
 		let json = JSON.parse(res.value);
-		let user = json.user
-		if (!user) {
-			callback(null)
-		}
-		callback(user);
+		callback(json);
 	}).then(e => e);
 }
 
-export function register(user_login, password, callback) {
-	fetch(`${API_ADDRESS}/register/${user_login}`).then(result => result.json()).then(res => {
+export function RegisterUser(user_login, password, callback) {
+	fetch(`${API_ADDRESS}/register/`, {
+		method: "POST",
+		headers: {'Content-Type': 'application/json'},
+		body: JSON.stringify({
+			login: user_login,
+			password: password
+		}),
+	}).then(result => result.json()).then(res => {
 		let json = JSON.parse(res.value);
-		let user = json.user
-		if (!user) {
-			callback(null)
-		}
-		callback(user);
+		callback(json);
 	}).then(e => e);
 }
