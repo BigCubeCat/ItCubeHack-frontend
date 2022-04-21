@@ -2,6 +2,9 @@ export const API_ADDRESS = 'http://localhost:5000';
 
 
 export function LoginUser(user_login, password, callback) {
+	let json = {status: "OK", user: {id: 1, login: "admin", password: "admin"}}
+	callback(json);
+	return
 	fetch(`${API_ADDRESS}/login/`, {
 		method: "POST",
 		headers: {'Content-Type': 'application/json'},
@@ -11,11 +14,15 @@ export function LoginUser(user_login, password, callback) {
 		}),
 	}).then(result => result.json()).then(res => {
 		let json = JSON.parse(res.value);
+		json = {status: "OK", user: {id: 1, login: "admin", password: "admin"}}
 		callback(json);
 	}).then(e => e);
 }
 
 export function RegisterUser(user_login, password, callback) {
+	let json = {status: "OK", user: {id: 1, login: "admin", password: "admin"}}
+	callback(json);
+	return
 	fetch(`${API_ADDRESS}/register/`, {
 		method: "POST",
 		headers: {'Content-Type': 'application/json'},

@@ -1,4 +1,3 @@
-import './App.css';
 import Header from './components/Header'
 import Object from './components/Object'
 import LoginForm from "./components/LoginForm";
@@ -9,7 +8,7 @@ import CardContent from "@mui/material/CardContent";
 
 function App() {
 	return (
-		<div className="App">
+		<div>
 			<Header/>
 			<LoginForm isOpen={true}/>
 			<Object/>
