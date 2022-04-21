@@ -10,6 +10,7 @@ import {useDispatch, useSelector} from "react-redux";
 import * as actions from './store/actions';
 import {useState} from "react";
 import {GetPost} from './api/post'
+import CreateForm from "./components/CreateForm";
 
 function App() {
 	const [post, setPost] = useState({
@@ -43,6 +44,7 @@ function App() {
 					<NewComment/>
 				</CardContent>
 			</Card>
+			{(state.user.is_admin) ? <CreateForm /> : null}
 			<Navigation style={{position: "absolute", bottom: 0, margin: "0 auto"}} callback={id => {
 				dispatch(actions.ChangePage(id))
 				GetPost(id, post => {

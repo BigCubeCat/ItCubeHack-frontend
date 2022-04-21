@@ -2,7 +2,7 @@ import {API_ADDRESS} from "./user";
 
 
 export function CreatePost(post, callback) {
-	fetch(`${API_ADDRESS}/create`, {
+	fetch(`${API_ADDRESS}/create/post`, {
 		method: "POST",
 		headers: {'Content-Type': 'application/json'},
 		body: JSON.stringify(post),
