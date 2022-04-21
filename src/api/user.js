@@ -1,4 +1,4 @@
-export const API_ADDRESS = 'http://localhost:5000';
+export const API_ADDRESS = 'http://KXRXH.pythonanywhere.com';
 
 
 export function LoginUser(user_login, password, callback) {
