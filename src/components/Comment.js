@@ -7,12 +7,6 @@ export default function Comment(props) {
 		<Box
 			sx={{
 				maxWidth: 1000,
-				height: 300,
-				backgroundColor: 'primary.light',
-				'&:hover': {
-					backgroundColor: 'primary.main',
-					opacity: [0.9, 0.8, 0.7],
-				},
 			}}
 		>
 			<Typography component="div" variant="text" color="black">

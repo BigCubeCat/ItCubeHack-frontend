@@ -15,7 +15,7 @@ export function LoginUser(user_login, password, callback) {
 }
 
 export function RegisterUser(user_login, password, callback) {
-	fetch(`${API_ADDRESS}/register`, {
+	fetch(`${API_ADDRESS}/create/user`, {
 		method: "POST",
 		headers: {'Content-Type': 'application/json'},
 		body: JSON.stringify({

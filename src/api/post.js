@@ -12,7 +12,7 @@ export function CreatePost(post, callback) {
 }
 
 export function GetPost(post_id, callback) {
-	fetch(`${API_ADDRESS}/get/${post_id}`).then(result => result.json()).then(res => {
+	fetch(`${API_ADDRESS}/get/post?post_id=${post_id}`).then(result => result.json()).then(res => {
 		callback(res.post);
 	}).then(e => e)
 }

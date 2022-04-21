@@ -3,6 +3,7 @@ import Card from '@mui/material/Card';
 import CardContent from '@mui/material/CardContent';
 import CardMedia from '@mui/material/CardMedia';
 import Typography from '@mui/material/Typography';
+import {Chip} from "@mui/material";
 
 export default function Object(props) {
 	return (
@@ -13,16 +14,14 @@ export default function Object(props) {
 			/>
 			<CardContent>
 				<Typography gutterBottom variant="h5" component="div">
-					{props.title}
+					{props.post.title}
 				</Typography>
-				<Typography variant="h6" component="div">
-					Регион: {props.region}
-				</Typography>
-				<Typography variant="h6" component="div">
-					Категория: {props.type}
+				<Typography variant="text" component="div">
+					Регион: {props.post.region} <br/> Категория: {props.post.category} <br/>
+					В ЮНЕСКО: {props.post.unesco ? <Chip label="Да" color="primary" variant="outlined"/> : "Нет"}
 				</Typography>
 				<Typography variant="body2" color="text.secondary">
-					{props.description}
+					{props.post.description}
 				</Typography>
 			</CardContent>
 		</Card>

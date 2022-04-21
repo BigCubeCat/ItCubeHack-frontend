@@ -8,6 +8,7 @@ import Typography from '@mui/material/Typography';
 import InputBase from '@mui/material/InputBase';
 import MenuIcon from '@mui/icons-material/Menu';
 import SearchIcon from '@mui/icons-material/Search';
+import {useState} from "react";
 
 const Search = styled('div')(({theme}) => ({
 	position: 'relative',
@@ -52,6 +53,7 @@ const StyledInputBase = styled(InputBase)(({theme}) => ({
 }));
 
 export default function Header() {
+	const [searchRequest, setSearchRequest] = useState("");
 	return (
 		<Box sx={{flexGrow: 1}}>
 			<AppBar position="static">
@@ -80,6 +82,8 @@ export default function Header() {
 						<StyledInputBase
 							placeholder="Поиск..."
 							inputProps={{'aria-label': 'search'}}
+							value={searchRequest}
+							onChange={e => setSearchRequest(e.target.value)}
 						/>
 					</Search>
 				</Toolbar>

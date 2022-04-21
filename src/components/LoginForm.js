@@ -12,6 +12,7 @@ import {useDispatch} from 'react-redux';
 import {Visibility, VisibilityOff} from '@mui/icons-material';
 import {LoginUser, RegisterUser} from '../api/user'
 import * as actions from '../store/actions'
+import Typography from "@mui/material/Typography";
 
 const style = {
 	position: 'absolute',
@@ -97,8 +98,8 @@ export default function LoginForm(props) {
 					onClick={() => {
 						if (isLogin) {
 							LoginUser(login, password, user => {
-								if (user) {
-									dispatch(actions.LoginUser(user));
+								if (user.status == 'OK') {
+									dispatch(actions.LoginUser(user.user));
 									setIsOpen(false)
 								} else {
 									setErrorMessage(user.status)
@@ -108,7 +109,8 @@ export default function LoginForm(props) {
 							if (password !== repeatPassword)
 								return;
 							RegisterUser(login, password, user => {
-								if (user.user) {
+								console.log(user)
+								if (user.status == 'OK') {
 									dispatch(actions.RegisterUser(user.user));
 									setIsOpen(false)
 								} else {
@@ -117,6 +119,9 @@ export default function LoginForm(props) {
 							})
 						}
 					}}>Продолжить</Button>
+				<Typography variant="text.secondary">
+					{errorMessage}
+				</Typography>
 			</Box>
 		</Modal>
 	);
