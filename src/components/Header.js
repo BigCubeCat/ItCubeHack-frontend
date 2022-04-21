@@ -9,6 +9,9 @@ import InputBase from '@mui/material/InputBase';
 import MenuIcon from '@mui/icons-material/Menu';
 import SearchIcon from '@mui/icons-material/Search';
 import {useState} from "react";
+import {FindPost} from "../api/post";
+import {useDispatch} from "react-redux";
+import * as actions from '../store/actions'
 
 const Search = styled('div')(({theme}) => ({
 	position: 'relative',
@@ -54,6 +57,7 @@ const StyledInputBase = styled(InputBase)(({theme}) => ({
 
 export default function Header() {
 	const [searchRequest, setSearchRequest] = useState("");
+	const dispatch = useDispatch()
 	return (
 		<Box sx={{flexGrow: 1}}>
 			<AppBar position="static">
@@ -83,7 +87,14 @@ export default function Header() {
 							placeholder="Поиск..."
 							inputProps={{'aria-label': 'search'}}
 							value={searchRequest}
-							onChange={e => setSearchRequest(e.target.value)}
+							onChange={e => {
+								setSearchRequest(e.target.value)
+								FindPost(e.target.value, res => {
+									if (res !== 0) {
+										dispatch(actions.ChangePage(res.id))
+									}
+								})
+							}}
 						/>
 					</Search>
 				</Toolbar>

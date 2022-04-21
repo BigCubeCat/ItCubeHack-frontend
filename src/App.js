@@ -37,7 +37,10 @@ function App() {
 	const state = useSelector(state => state);
 	return (
 		<div>
-			<Header/>
+			<header>
+				<Header/>
+			</header>
+			<body>
 			{
 				(state.user.is_admin) ? <Button onClick={() => setIsOpen(true)}>Добавить объект</Button> : null
 			}
@@ -49,13 +52,17 @@ function App() {
 					<NewComment/>
 				</CardContent>
 			</Card>
-			{(state.user.is_admin && isOpen) ? <CreateForm setIsOpen={setIsOpen} /> : null}
-			<Navigation style={{position: "absolute", bottom: 0, margin: "0 auto"}} callback={id => {
-				dispatch(actions.ChangePage(id))
-				GetPost(id, post => {
-					setPost(post)
-				})
-			}} content={state.current}/>
+			{(state.user.is_admin && isOpen) ? <CreateForm setIsOpen={setIsOpen}/> : null}
+			</body>
+			<footer style={{position: "absolute", bottom: 0, display: "flex", flexDirection: 'row', justifyContent: "center"}}>
+				<Navigation callback={id => {
+					dispatch(actions.ChangePage(id))
+					GetPost(id, post => {
+						setPost(post)
+					})
+				}} content={state.current}/>
+			</footer>
+
 		</div>
 	);
 }

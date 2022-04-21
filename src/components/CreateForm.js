@@ -49,7 +49,8 @@ export default function CreateForm(props) {
 		>
 			<Box sx={style}>
 				<h2 style={{textAlign: 'center'}} id="parent-modal-title">
-					Вход в <img src="logo512.png" width={32}/></h2>
+					Добавить объект
+				</h2>
 				<InputLabel htmlFor="login">Название</InputLabel>
 				<OutlinedInput
 					style={{width: '100%'}}
