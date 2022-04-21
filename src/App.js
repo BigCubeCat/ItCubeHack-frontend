@@ -11,6 +11,7 @@ import * as actions from './store/actions';
 import {useState} from "react";
 import {GetPost} from './api/post'
 import CreateForm from "./components/CreateForm";
+import {Button} from "@mui/material";
 
 function App() {
 	const [post, setPost] = useState({
@@ -32,10 +33,14 @@ function App() {
 		unesco: null
 	});
 	const dispatch = useDispatch();
+	const [isOpen, setIsOpen] = useState(false);
 	const state = useSelector(state => state);
 	return (
 		<div>
 			<Header/>
+			{
+				(state.user.is_admin) ? <Button onClick={() => setIsOpen(true)}>Добавить объект</Button> : null
+			}
 			<LoginForm isOpen={true}/>
 			<Object post={post}/>
 			<Card sx={{maxWidth: 1600, maxHeight: 900, margin: '0 auto', marginTop: 10, alignContent: "center"}}>
@@ -44,7 +49,7 @@ function App() {
 					<NewComment/>
 				</CardContent>
 			</Card>
-			{(state.user.is_admin) ? <CreateForm /> : null}
+			{(state.user.is_admin && isOpen) ? <CreateForm setIsOpen={setIsOpen} /> : null}
 			<Navigation style={{position: "absolute", bottom: 0, margin: "0 auto"}} callback={id => {
 				dispatch(actions.ChangePage(id))
 				GetPost(id, post => {

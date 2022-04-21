@@ -38,6 +38,10 @@ export default function CreateForm(props) {
 	const [category, setCategory] = useState("");
 	const [description, setDescription] = useState("");
 	const dispatch = useDispatch(); // Получаем диспатч из хука
+	const close = () => {
+		setIsOpen(false)
+		props.setIsOpen(false)
+	}
 	const user = useSelector(state => state).user
 	return (
 		<Modal
@@ -95,7 +99,7 @@ export default function CreateForm(props) {
 				<br/>
 				<Button
 					style={{width: '50%'}}
-					onClick={() => setIsOpen(false)}>{'Отмена'}</Button>
+					onClick={() => close()}>{'Отмена'}</Button>
 				<Button
 					style={{width: '50%'}}
 					onClick={() => {
@@ -110,7 +114,7 @@ export default function CreateForm(props) {
 							}
 						}, () => {
 						});
-						setIsOpen(false)
+						close()
 					}}>Создать</Button>
 			</Box>
 		</Modal>
