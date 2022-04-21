@@ -2,7 +2,7 @@ import {API_ADDRESS} from "./user";
 
 
 export function CreatePost(post, callback) {
-	fetch(`${API_ADDRESS}/create/`, {
+	fetch(`${API_ADDRESS}/create`, {
 		method: "POST",
 		headers: {'Content-Type': 'application/json'},
 		body: JSON.stringify(post),
@@ -18,7 +18,7 @@ export function GetPost(post_id, callback) {
 }
 
 export function FindPost(post, callback) {
-	fetch(`${API_ADDRESS}/create/`, {
+	fetch(`${API_ADDRESS}/create`, {
 		method: "POST",
 		headers: {'Content-Type': 'application/json'},
 		body: JSON.stringify(post),

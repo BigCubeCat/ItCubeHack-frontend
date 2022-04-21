@@ -12,3 +12,8 @@ export const Logout = user => ({
 	type: actions.Types.LOGOUT,
 	payload: user
 })
+
+export const ChangePage = id => ({
+	type: actions.Types.PAGE,
+	payload: { id }
+})

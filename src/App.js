@@ -5,8 +5,13 @@ import Comments from "./components/Comments";
 import NewComment from "./components/NewComment";
 import Card from "@mui/material/Card";
 import CardContent from "@mui/material/CardContent";
+import Navigation from "./components/Navigation";
+import {useDispatch, useSelector} from "react-redux";
+import * as actions from './store/actions';
 
 function App() {
+	const dispatch = useDispatch();
+	const state = useSelector(state => state);
 	return (
 		<div>
 			<Header/>
@@ -18,6 +23,9 @@ function App() {
 					<NewComment/>
 				</CardContent>
 			</Card>
+			<Navigation style={{position: "absolute", bottom: 0, margin: "0 auto"}} callback={id => {
+				dispatch(actions.ChangePage(id))
+			}} content={state.current} />
 		</div>
 	);
 }

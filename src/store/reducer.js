@@ -5,7 +5,8 @@ const defaultState = {
 		name: "",
 		password: "",
 		is_admin: false
-	}
+	},
+	current: 1
 }
 
 export default function reducer(state = defaultState, action) {
@@ -20,6 +21,8 @@ export default function reducer(state = defaultState, action) {
 			};
 		case actions.Types.LOGOUT:
 			return defaultState
+		case actions.Types.PAGE:
+			return {...state, current: action.payload.id}
 		default:
 			return state;
 	}
